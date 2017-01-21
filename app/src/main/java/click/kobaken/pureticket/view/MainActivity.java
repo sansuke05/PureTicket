@@ -69,11 +69,11 @@ public class MainActivity extends AppCompatActivity implements Navigator {
 
         Explode explode = new Explode();
         TopFragment fragment = TopFragment.newInstance();
-        fragment.setEnterTransition(explode);
-        fragment.setExitTransition(explode);
+//        fragment.setEnterTransition(explode);
+//        fragment.setExitTransition(explode);
 
         getSupportFragmentManager().beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.container, fragment, TopFragment.TAG)
                 .commit();
     }
@@ -92,11 +92,11 @@ public class MainActivity extends AppCompatActivity implements Navigator {
         close.setSlideEdge(Gravity.START);
 
         TransactionFragment fragment = TransactionFragment.newInstance();
-        fragment.setEnterTransition(open);
-        fragment.setExitTransition(new Explode());
+//        fragment.setEnterTransition(open);
+//        fragment.setExitTransition(new Explode());
 
         getSupportFragmentManager().beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.container, fragment, TransactionFragment.TAG)
                 .commit();
     }
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements Navigator {
         binding.toolbar.setElevation(4);
         binding.navigationView.getMenu().getItem(1).setChecked(true);
         getSupportFragmentManager().beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.container, ConfirmTransactionFragment.newInstance(target, sender), ConfirmTransactionFragment.TAG)
                 .commit();
     }
@@ -124,11 +124,11 @@ public class MainActivity extends AppCompatActivity implements Navigator {
         slide.setSlideEdge(Gravity.END);
 
         ReceiveFragment fragment = ReceiveFragment.newInstance();
-        fragment.setEnterTransition(slide);
-        fragment.setExitTransition(slide);
+//        fragment.setEnterTransition(slide);
+//        fragment.setExitTransition(slide);
 
         getSupportFragmentManager().beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.container, fragment, ReceiveFragment.TAG)
                 .commit();
     }
@@ -145,11 +145,11 @@ public class MainActivity extends AppCompatActivity implements Navigator {
         open.setSlideEdge(Gravity.END);
 
         RightsFragment fragment = RightsFragment.newInstance();
-        fragment.setEnterTransition(open);
-        fragment.setExitTransition(new Explode());
+//        fragment.setEnterTransition(open);
+//        fragment.setExitTransition(new Explode());
 
         getSupportFragmentManager().beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.container, fragment, RightsFragment.TAG)
                 .commit();
     }
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements Navigator {
         binding.toolbar.setElevation(4);
         binding.navigationView.getMenu().getItem(2).setChecked(true);
         getSupportFragmentManager().beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.container, RightFragment.newInstance(target), RightFragment.TAG)
                 .commit();
     }
@@ -178,11 +178,11 @@ public class MainActivity extends AppCompatActivity implements Navigator {
         open.setSlideEdge(Gravity.END);
 
         BadgeFragment fragment = BadgeFragment.newInstance();
-        fragment.setEnterTransition(open);
-        fragment.setExitTransition(new Explode());
+//        fragment.setEnterTransition(open);
+//        fragment.setExitTransition(new Explode());
 
         getSupportFragmentManager().beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.container, fragment, BadgeFragment.TAG)
                 .commit();
     }
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements Navigator {
         binding.toolbar.setElevation(0);
         binding.navigationView.getMenu().getItem(4).setChecked(true);
         getSupportFragmentManager().beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.container, TabHostFragment.newInstance(), TabHostFragment.TAG)
                 .commit();
     }
