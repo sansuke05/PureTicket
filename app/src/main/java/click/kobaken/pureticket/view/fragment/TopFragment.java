@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import click.kobaken.pureticket.Katyusha;
 import click.kobaken.pureticket.R;
 import click.kobaken.pureticket.databinding.FragmentTopBinding;
-import click.kobaken.pureticket.domain.entity.UserInfo;
+import click.kobaken.pureticket.model.UserInfo;
 import click.kobaken.pureticket.view.Navigator;
 
 public class TopFragment extends Fragment {

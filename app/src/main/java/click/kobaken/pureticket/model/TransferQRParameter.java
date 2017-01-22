@@ -1,4 +1,4 @@
-package click.kobaken.pureticket.domain.entity;
+package click.kobaken.pureticket.model;
 
 public class TransferQRParameter extends QRParameter {
     public String alias;

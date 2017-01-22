@@ -1,4 +1,4 @@
-package click.kobaken.pureticket.domain.entity;
+package click.kobaken.pureticket.model;
 
 import java.io.Serializable;
 

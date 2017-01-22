@@ -19,13 +19,13 @@ import android.widget.Toast;
 import click.kobaken.pureticket.Katyusha;
 import click.kobaken.pureticket.R;
 import click.kobaken.pureticket.databinding.ActivityMainBinding;
-import click.kobaken.pureticket.domain.entity.UserInfo;
+import click.kobaken.pureticket.model.UserInfo;
 import click.kobaken.pureticket.view.fragment.BadgeFragment;
 import click.kobaken.pureticket.view.fragment.ConfirmTransactionFragment;
 import click.kobaken.pureticket.view.fragment.ReceiveFragment;
-import click.kobaken.pureticket.view.fragment.RightFragment;
-import click.kobaken.pureticket.view.fragment.RightsFragment;
+import click.kobaken.pureticket.view.fragment.LiveFragment;
 import click.kobaken.pureticket.view.fragment.TabHostFragment;
+import click.kobaken.pureticket.view.fragment.LiveListFragment;
 import click.kobaken.pureticket.view.fragment.TopFragment;
 import click.kobaken.pureticket.view.fragment.TransactionFragment;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements Navigator {
                 gotoTransaction();
                 return;
             }
-            if (getSupportFragmentManager().findFragmentByTag(RightFragment.TAG) != null) {
+            if (getSupportFragmentManager().findFragmentByTag(LiveFragment.TAG) != null) {
                 gotoRightsList();
                 return;
             }
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements Navigator {
     @Override
     public void gotoRightsList() {
         initToolbar();
-        binding.toolbar.setTitle(getString(R.string.rights));
+        binding.toolbar.setTitle(getString(R.string.tickets));
         allClearMenuChecked();
         binding.toolbar.setElevation(4);
         binding.navigationView.getMenu().getItem(2).setChecked(true);
@@ -144,13 +144,13 @@ public class MainActivity extends AppCompatActivity implements Navigator {
         Slide open = new Slide();
         open.setSlideEdge(Gravity.END);
 
-        RightsFragment fragment = RightsFragment.newInstance();
+        LiveListFragment fragment = LiveListFragment.newInstance();
 //        fragment.setEnterTransition(open);
 //        fragment.setExitTransition(new Explode());
 
         getSupportFragmentManager().beginTransaction()
 //                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .replace(R.id.container, fragment, RightsFragment.TAG)
+                .replace(R.id.container, fragment, LiveListFragment.TAG)
                 .commit();
     }
 
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements Navigator {
         binding.navigationView.getMenu().getItem(2).setChecked(true);
         getSupportFragmentManager().beginTransaction()
 //                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .replace(R.id.container, RightFragment.newInstance(target), RightFragment.TAG)
+                .replace(R.id.container, LiveFragment.newInstance(target), LiveFragment.TAG)
                 .commit();
     }
 

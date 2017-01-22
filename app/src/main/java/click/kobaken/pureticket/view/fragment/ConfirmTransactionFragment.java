@@ -11,20 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import click.kobaken.pureticket.Katyusha;
 import click.kobaken.pureticket.R;
-import click.kobaken.pureticket.data.repository.TransactionRepositoryImpl;
 import click.kobaken.pureticket.databinding.FragmentConfirmTransactionBinding;
-import click.kobaken.pureticket.domain.entity.UserInfo;
-import click.kobaken.pureticket.domain.repository.TransactionRepository;
+import click.kobaken.pureticket.model.UserInfo;
 import click.kobaken.pureticket.view.Navigator;
 import click.kobaken.pureticket.view.dialogs.MyProgressDialog;
 import click.kobaken.pureticket.view.dialogs.SuccessDialog;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.soramitsu.irohaandroid.Iroha;
+import io.soramitsu.irohaandroid.callback.Callback;
+import io.soramitsu.irohaandroid.model.Account;
 
 public class ConfirmTransactionFragment extends Fragment {
     public static final String TAG = ConfirmTransactionFragment.class.getSimpleName();
@@ -32,10 +28,10 @@ public class ConfirmTransactionFragment extends Fragment {
     public static final String ARG_TARGET_NAME = "target_name";
     public static final String ARG_RECEIVER = "receiver";
 
+    public static final String IROHA_OPERATION_ASSET = "operation_asset";
+
     Navigator navigator;
     FragmentConfirmTransactionBinding binding;
-
-    private TransactionRepository transactionRepository = new TransactionRepositoryImpl();
 
     public static ConfirmTransactionFragment newInstance(@NonNull String target, @NonNull String receiver) {
         ConfirmTransactionFragment fragment = new ConfirmTransactionFragment();
@@ -79,53 +75,54 @@ public class ConfirmTransactionFragment extends Fragment {
         binding.sendButton.setOnClickListener(v -> {
             final MyProgressDialog progressDialog = new MyProgressDialog();
             progressDialog.show(getActivity(), getString(R.string.connection_progress_title), getString(R.string.send_payment_message));
-            transactionRepository.sendPayment(null)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                            responseObject -> {
-                                if (responseObject.status == 200) {
-                                    new Timer().schedule(new TimerTask() {
-                                        @Override
-                                        public void run() {
-                                            getActivity().runOnUiThread(() -> {
-                                                progressDialog.hide();
 
-                                                final SuccessDialog successDialog = new SuccessDialog(getLayoutInflater(savedInstanceState));
-                                                successDialog.show(getActivity(), responseObject.message, vv -> {
+            try {
+                final long timestamp = System.currentTimeMillis() / 1000;
 
-                                                    if (target.equals("Vodka")) {
-                                                        userInfo.amount -= 3;
-                                                    } else if (target.equals("Bread")) {
-                                                        userInfo.amount -= 2;
-                                                    } else {
-                                                        userInfo.amount -= Integer.parseInt(target);
-                                                    }
+                // (iroha) Operation asset
+                Iroha iroha = Iroha.getInstance();
+                iroha.runAsyncTask(IROHA_OPERATION_ASSET, iroha.operateAssetFunction(
+                        "assetUuid",
+                        "transfer",
+                        "7000",
+                        Account.getUuid(getContext()),
+                        "三森すずこ",
+                        "signature",
+                        timestamp
+                ), new Callback<Boolean>() {
+                    @Override
+                    public void onSuccessful(Boolean result) {
+                        progressDialog.hide();
 
-                                                    successDialog.hide();
-                                                    navigator.gotoTransaction();
-                                                });
-                                            });
-                                        }
-                                    }, 2000);
-                                }
-                            },
-                            throwable -> {
-                            },
-                            () -> {
-                            }
-                    );
+                        final SuccessDialog successDialog = new SuccessDialog(getLayoutInflater(savedInstanceState));
+                        successDialog.show(getActivity(), "Send successful", vv -> {
+                            successDialog.hide();
+                            navigator.gotoTransaction();
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(Throwable throwable) {
+                        progressDialog.hide();
+
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                progressDialog.hide();
+            }
         });
     }
 
     private void setConfirmInfo(UserInfo userInfo, String target, String receiver) {
-        String balanceText = "$" + userInfo.amount + " to " + "$";
+        String balanceText = "$" + userInfo.assets.get(0).value + " to " + "$";
+        int amount = Integer.parseInt(userInfo.assets.get(0).value);
         if (target.equals("Vodka")) {
-            balanceText += (userInfo.amount - 3) + "";
+            balanceText += (amount - 3) + "";
         } else if (target.equals("Bread")) {
-            balanceText += (userInfo.amount - 2) + "";
+            balanceText += (amount - 2) + "";
         } else {
-            balanceText += (userInfo.amount - Integer.parseInt(target)) + "";
+            balanceText += (amount - Integer.parseInt(target)) + "";
         }
         binding.balance.setText(balanceText);
 

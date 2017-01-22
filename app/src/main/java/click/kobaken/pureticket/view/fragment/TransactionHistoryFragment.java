@@ -14,9 +14,9 @@ import java.util.List;
 
 import click.kobaken.pureticket.R;
 import click.kobaken.pureticket.databinding.FragmentTransactionHistoryBinding;
-import click.kobaken.pureticket.domain.entity.Transaction;
 import click.kobaken.pureticket.view.Navigator;
 import click.kobaken.pureticket.view.adapter.TransactionListAdapter;
+import io.soramitsu.irohaandroid.model.Transaction;
 
 public class TransactionHistoryFragment extends Fragment {
     public final static String TAG = TransactionHistoryFragment.class.getSimpleName();
@@ -52,27 +52,35 @@ public class TransactionHistoryFragment extends Fragment {
 
         List<Transaction> history = new ArrayList<Transaction>() {{
             Transaction transaction = new Transaction();
-            transaction.amount = "1000";
-            transaction.opponent = "hoge支店A";
-            transaction.timestamp = 1456940524;
+            transaction.assetName = "円";
+            transaction.params = new Transaction.OperationParameter();
+            transaction.params.value = "10000";
+            transaction.params.receiver = "VI○A";
+            transaction.params.timestamp = 1456940524;
             add(transaction);
 
             Transaction transaction1 = new Transaction();
-            transaction1.amount = "300";
-            transaction1.opponent = "hoge支店B";
-            transaction1.timestamp = 1465148524;
+            transaction1.assetName = "円";
+            transaction1.params = new Transaction.OperationParameter();
+            transaction1.params.value = "7000";
+            transaction1.params.receiver = "M○st○rCa○d";
+            transaction1.params.timestamp = 1465148524;
             add(transaction1);
 
             Transaction transaction2 = new Transaction();
-            transaction2.amount = "600";
-            transaction2.opponent = "hoge支店C";
-            transaction2.timestamp = 1478799724;
+            transaction2.assetName = "円";
+            transaction2.params = new Transaction.OperationParameter();
+            transaction2.params.value = "6000";
+            transaction2.params.receiver = "J○B";
+            transaction2.params.timestamp = 1478799724;
             add(transaction2);
 
             Transaction transaction3 = new Transaction();
-            transaction3.amount = "7000";
-            transaction3.opponent = "hoge支店D";
-            transaction3.timestamp = 1479577324;
+            transaction3.assetName = "円";
+            transaction3.params = new Transaction.OperationParameter();
+            transaction3.params.value = "8000";
+            transaction3.params.receiver = "アメリ○ン・エキ○プレス";
+            transaction3.params.timestamp = 1479577324;
             add(transaction3);
         }};
 

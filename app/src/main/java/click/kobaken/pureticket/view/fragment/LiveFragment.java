@@ -19,20 +19,20 @@ import java.io.UnsupportedEncodingException;
 import click.kobaken.pureticket.Katyusha;
 import click.kobaken.pureticket.R;
 import click.kobaken.pureticket.databinding.FragmentRightBinding;
-import click.kobaken.pureticket.domain.entity.TransferQRParameter;
-import click.kobaken.pureticket.util.QRCodeGenerator;
+import click.kobaken.pureticket.model.TransferQRParameter;
 import click.kobaken.pureticket.view.Navigator;
+import io.soramitsu.irohaandroid.qr.QRCodeGenerator;
 
-public class RightFragment extends Fragment {
-    public static final String TAG = RightFragment.class.getSimpleName();
+public class LiveFragment extends Fragment {
+    public static final String TAG = LiveFragment.class.getSimpleName();
 
     public static final String ARG_TARGET_NAME = "target_name";
 
     Navigator navigator;
     FragmentRightBinding binding;
 
-    public static RightFragment newInstance(@NonNull String targetName) {
-        RightFragment fragment = new RightFragment();
+    public static LiveFragment newInstance(@NonNull String targetName) {
+        LiveFragment fragment = new LiveFragment();
         Bundle bundle = new Bundle();
         bundle.putString(ARG_TARGET_NAME, targetName);
         fragment.setArguments(bundle);
@@ -76,7 +76,7 @@ public class RightFragment extends Fragment {
                     .create()
                     .toJson(qrParams, TransferQRParameter.class);
             Log.d(TAG, qrParamsText);
-            binding.imageViewReceiptQrCode.setImageBitmap(QRCodeGenerator.generateQR(qrParamsText, 500));
+            binding.imageViewReceiptQrCode.setImageBitmap(QRCodeGenerator.generateQR(qrParamsText, 500, QRCodeGenerator.ENCODE_CHARACTER_TYPE_UTF_8));
         } catch (WriterException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
