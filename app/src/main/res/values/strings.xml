@@ -23,4 +23,9 @@
     <string name="register_name">name</string>
     <string name="register_email">email</string>
     <string name="birthday">生年月日</string>
+    <string name="title_activity_artist_profile">ArtistProfileActivity</string>
+    <string name="artist_profile">"大阪市出身のアーティスト。TVアニメ『神様のメモ帳』OP主題歌「カワルミライ」でメジャーデビュー。\n『ましろ色シンフォニー』、『氷菓』、『ガールズ＆パンツァー』など、話題のアニメ主題歌を次々に担当。"</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>

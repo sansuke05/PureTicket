@@ -1,5 +1,6 @@
 package click.kobaken.pureticket.view;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
@@ -135,6 +136,10 @@ public class MainActivity extends AppCompatActivity implements Navigator {
 
     @Override
     public void gotoRightsList() {
+
+        Intent intent = new Intent(getApplication(), ArtistProfileActivity.class);
+        startActivity(intent);
+        /*
         initToolbar();
         binding.toolbar.setTitle(getString(R.string.tickets));
         allClearMenuChecked();
@@ -152,10 +157,12 @@ public class MainActivity extends AppCompatActivity implements Navigator {
 //                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.container, fragment, LiveListFragment.TAG)
                 .commit();
+         */
     }
 
     @Override
     public void gotoRight(@NonNull String target) {
+
         changeToolbar(target, R.drawable.ic_arrow_back_white_24dp, v -> gotoRightsList());
         allClearMenuChecked();
         binding.toolbar.setElevation(4);
@@ -164,6 +171,7 @@ public class MainActivity extends AppCompatActivity implements Navigator {
 //                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.container, LiveFragment.newInstance(target), LiveFragment.TAG)
                 .commit();
+                
     }
 
     @Override
