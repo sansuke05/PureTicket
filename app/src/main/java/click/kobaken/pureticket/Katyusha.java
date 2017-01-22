@@ -17,7 +17,7 @@ public class Katyusha extends Application {
         keyPair = KeyGenerator.createKeyPair();
         userInfo = UserInfo.createMock();
         new Iroha.Builder()
-                .baseUrl("https:45.76.148.248:80/")
+                .baseUrl("http://45.76.148.248:80")
                 .build();
     }
 
