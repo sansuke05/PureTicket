@@ -19,7 +19,6 @@ import click.kobaken.pureticket.view.Navigator;
 import click.kobaken.pureticket.view.adapter.TransactionListAdapter;
 import io.soramitsu.irohaandroid.Iroha;
 import io.soramitsu.irohaandroid.callback.Callback;
-import io.soramitsu.irohaandroid.model.Account;
 import io.soramitsu.irohaandroid.model.Transaction;
 
 
@@ -62,7 +61,7 @@ public class TicketHistoryFragment extends Fragment {
             Iroha iroha = Iroha.getInstance();
             iroha.runAsyncTask(
                     IROHA_TICKET_TRANSACTION_HISTORY,
-                    iroha.findTransactionHistoryFunction(Account.getUuid(getContext()), 30, 0),
+                    iroha.findTransactionHistoryFunction("uuid", 30, 0),
                     new Callback<List<Transaction>>() {
                         @Override
                         public void onSuccessful(List<Transaction> result) {
