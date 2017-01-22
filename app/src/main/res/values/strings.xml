@@ -21,9 +21,4 @@
     <string name="right_title">Would you like read the QR for camera?</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="register_name">name</string>
-    <string name="register_email">email</string>
-    <string name="birthday">生年月日</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
 </resources>
