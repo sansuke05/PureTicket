@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
 import click.kobaken.pureticket.R;
-import click.kobaken.pureticket.view.fragment.RightHistoryFragment;
+import click.kobaken.pureticket.view.fragment.TicketHistoryFragment;
 import click.kobaken.pureticket.view.fragment.TransactionHistoryFragment;
 
 public class TabPagerAdapter extends FragmentPagerAdapter {
@@ -28,7 +28,7 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
         if (position == 0) {
             return TransactionHistoryFragment.newInstance();
         } else {
-            return RightHistoryFragment.newInstance();
+            return TicketHistoryFragment.newInstance();
         }
     }
 
@@ -42,7 +42,7 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
         if (position == 0) {
             return context.getString(R.string.money);
         } else {
-            return context.getString(R.string.right);
+            return context.getString(R.string.ticket);
         }
     }
 

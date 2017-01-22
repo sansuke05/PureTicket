@@ -2,9 +2,8 @@ package click.kobaken.pureticket;
 
 import android.app.Application;
 
-import click.kobaken.pureticket.data.repository.UserInfoRepositoryImpl;
-import click.kobaken.pureticket.domain.entity.UserInfo;
-import click.kobaken.pureticket.domain.repository.UserInfoRepository;
+import click.kobaken.pureticket.model.UserInfo;
+import io.soramitsu.irohaandroid.Iroha;
 import io.soramitsu.irohaandroid.model.KeyPair;
 import io.soramitsu.irohaandroid.security.KeyGenerator;
 
@@ -12,13 +11,14 @@ public class Katyusha extends Application {
     private KeyPair keyPair;
     private UserInfo userInfo;
 
-    private UserInfoRepository userInfoRepository = new UserInfoRepositoryImpl();
-
     @Override
     public void onCreate() {
         super.onCreate();
-        keyPair = KeyGenerator.createKeyPair();;
-        userInfo = userInfoRepository.getUserInfo("hoge").single().toBlocking().single();
+        keyPair = KeyGenerator.createKeyPair();
+        userInfo = UserInfo.createMock();
+        new Iroha.Builder()
+                .baseUrl("https:45.76.148.248:80/")
+                .build();
     }
 
     public String getPublicKey() {

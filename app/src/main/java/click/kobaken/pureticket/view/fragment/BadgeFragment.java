@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import click.kobaken.pureticket.R;
-import click.kobaken.pureticket.domain.entity.Badge;
-import click.kobaken.pureticket.view.adapter.BadgeAdapter;
+import click.kobaken.pureticket.model.Badge;
+import click.kobaken.pureticket.view.adapter.BadgeListAdapter;
 
 public class BadgeFragment extends Fragment {
     public static final String TAG = BadgeFragment.class.getSimpleName();
@@ -25,14 +25,11 @@ public class BadgeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_badge, container, false);
         RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.rv_badge);
 
-        Badge badge = new Badge();
-        badge.initializeData();
-
-        BadgeAdapter badgeAdapter = new BadgeAdapter(badge.getBadges());
+        BadgeListAdapter badgeListAdapter = new BadgeListAdapter(Badge.createMocks());
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this.getActivity());
         rv.setLayoutManager(mLayoutManager);
-        rv.setAdapter(badgeAdapter);
+        rv.setAdapter(badgeListAdapter);
         return rootView;
     }
 

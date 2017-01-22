@@ -11,13 +11,13 @@ import android.widget.TextView;
 import java.util.List;
 
 import click.kobaken.pureticket.R;
-import click.kobaken.pureticket.domain.entity.Badge;
+import click.kobaken.pureticket.model.Badge;
 
 
-public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.BadgeViewHolder> {
+public class BadgeListAdapter extends RecyclerView.Adapter<BadgeListAdapter.BadgeViewHolder> {
     private List<Badge> badgeList;
 
-    public BadgeAdapter(List<Badge> badgeList) {
+    public BadgeListAdapter(List<Badge> badgeList) {
         this.badgeList = badgeList;
     }
 
@@ -34,9 +34,9 @@ public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.BadgeViewHol
 
     @Override
     public void onBindViewHolder(BadgeViewHolder holder, int position) {
-        holder.badgeName.setText(badgeList.get(position).getBadgeName());
-        holder.badgeDescription.setText(badgeList.get(position).getBadgeDescription());
-        holder.badgeImage.setImageResource(badgeList.get(position).getBadgeImageId());
+        holder.badgeName.setText(badgeList.get(position).name);
+        holder.badgeDescription.setText(badgeList.get(position).description);
+        holder.badgeImage.setImageResource(badgeList.get(position).imageId);
     }
 
     @Override

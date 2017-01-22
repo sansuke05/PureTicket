@@ -12,7 +12,7 @@ import java.util.List;
 
 import click.kobaken.pureticket.R;
 import click.kobaken.pureticket.databinding.ListTransactionHistoryBinding;
-import click.kobaken.pureticket.domain.entity.Transaction;
+import io.soramitsu.irohaandroid.model.Transaction;
 
 public class TransactionListAdapter extends BaseAdapter {
     private Context context;

@@ -4,7 +4,7 @@
     <string name="home">HOME</string>
     <string name="transaction">Transaction</string>
     <string name="badges">Your Badges</string>
-    <string name="rights">Your Rights</string>
+    <string name="tickets">Your Tickets</string>
     <string name="transaction_history">Transaction History</string>
     <string name="close">Close</string>
     <string name="send">Send</string>
@@ -16,7 +16,7 @@
     <string name="qr_generated">QR Generated</string>
     <string name="receive">Receive</string>
     <string name="money">Money</string>
-    <string name="right">Right</string>
-    <string name="send_right">Send right…</string>
+    <string name="ticket">Ticket</string>
+    <string name="send_ticket">Send ticket…</string>
     <string name="right_title">Would you like read the QR for camera?</string>
 </resources>

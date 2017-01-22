@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 
 import click.kobaken.pureticket.R;
 import click.kobaken.pureticket.databinding.FragmentTransactionBinding;
-import click.kobaken.pureticket.domain.entity.TransferQRParameter;
+import click.kobaken.pureticket.model.TransferQRParameter;
 import click.kobaken.pureticket.view.Navigator;
 import click.kobaken.pureticket.view.dialogs.OnQRReaderListener;
 import click.kobaken.pureticket.view.dialogs.QRReaderDialogFragment;

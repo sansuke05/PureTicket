@@ -20,9 +20,9 @@ import java.io.UnsupportedEncodingException;
 import click.kobaken.pureticket.Katyusha;
 import click.kobaken.pureticket.R;
 import click.kobaken.pureticket.databinding.FragmentReceiveBinding;
-import click.kobaken.pureticket.domain.entity.TransferQRParameter;
-import click.kobaken.pureticket.util.QRCodeGenerator;
+import click.kobaken.pureticket.model.TransferQRParameter;
 import click.kobaken.pureticket.view.Navigator;
+import io.soramitsu.irohaandroid.qr.QRCodeGenerator;
 
 
 public class ReceiveFragment extends Fragment {
@@ -60,7 +60,7 @@ public class ReceiveFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         binding = DataBindingUtil.bind(view);
         try {
-            binding.imageViewReceiptQrCode.setImageBitmap(QRCodeGenerator.generateQR("", 500));
+            binding.imageViewReceiptQrCode.setImageBitmap(QRCodeGenerator.generateQR("", 500, QRCodeGenerator.ENCODE_CHARACTER_TYPE_UTF_8));
         } catch (WriterException e) {
             e.printStackTrace();
         }
@@ -69,11 +69,11 @@ public class ReceiveFragment extends Fragment {
     }
 
     private void defaultQR() throws WriterException {
-        binding.imageViewReceiptQrCode.setImageBitmap(QRCodeGenerator.generateQR(QR_TEXT_DEFAULT, 500));
+        binding.imageViewReceiptQrCode.setImageBitmap(QRCodeGenerator.generateQR(QR_TEXT_DEFAULT, 500, QRCodeGenerator.ENCODE_CHARACTER_TYPE_UTF_8));
     }
 
     private void generateQR(String qrParamsText) throws WriterException {
-        binding.imageViewReceiptQrCode.setImageBitmap(QRCodeGenerator.generateQR(qrParamsText, 500));
+        binding.imageViewReceiptQrCode.setImageBitmap(QRCodeGenerator.generateQR(qrParamsText, 500, QRCodeGenerator.ENCODE_CHARACTER_TYPE_UTF_8));
     }
 
     private TextWatcher textWatcher() {

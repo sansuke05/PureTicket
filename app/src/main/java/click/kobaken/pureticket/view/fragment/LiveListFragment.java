@@ -10,18 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import click.kobaken.pureticket.R;
-import click.kobaken.pureticket.domain.entity.Right;
+import click.kobaken.pureticket.model.Ticket;
 import click.kobaken.pureticket.view.Navigator;
-import click.kobaken.pureticket.view.adapter.RightsAdapter;
+import click.kobaken.pureticket.view.adapter.TicketListAdapter;
 
 
-public class RightsFragment extends Fragment {
-    public static final String TAG = RightsFragment.class.getSimpleName();
+public class LiveListFragment extends Fragment {
+    public static final String TAG = LiveListFragment.class.getSimpleName();
 
     Navigator navigator;
 
-    public static RightsFragment newInstance() {
-        return new RightsFragment();
+    public static LiveListFragment newInstance() {
+        return new LiveListFragment();
     }
 
     @Override
@@ -40,14 +40,11 @@ public class RightsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_rights, container, false);
         RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.rv_rights);
 
-        Right right = new Right();
-        right.initializeData();
-
-        RightsAdapter rightsAdapter = new RightsAdapter(right.getRights(), navigator::gotoRight);
+        TicketListAdapter ticketListAdapter = new TicketListAdapter(Ticket.createMocks(), navigator::gotoRight);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this.getActivity());
         rv.setLayoutManager(mLayoutManager);
-        rv.setAdapter(rightsAdapter);
+        rv.setAdapter(ticketListAdapter);
         return rootView;
     }
 }
